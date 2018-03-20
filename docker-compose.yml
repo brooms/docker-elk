@@ -1,4 +1,7 @@
-version: '2'
+version: '3.2'
+
+volumes:
+  elasticsearchdata:
 
 services:
 
@@ -7,6 +10,7 @@ services:
       context: elasticsearch/
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - elasticsearchdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -43,6 +47,5 @@ services:
       - elasticsearch
 
 networks:
-
   elk:
     driver: bridge
